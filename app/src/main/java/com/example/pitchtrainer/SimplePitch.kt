@@ -1,5 +1,7 @@
 package com.example.pitchtrainer
 
+import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +22,7 @@ class SimplePitch : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,11 @@ class SimplePitch : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        mediaPlayer = MediaPlayer.create(activity, R.raw.ff4a)
+        mediaPlayer?.setOnPreparedListener {
+            println("mediaplayer ready")
+        }
+        mediaPlayer?.start()
     }
 
     override fun onCreateView(
