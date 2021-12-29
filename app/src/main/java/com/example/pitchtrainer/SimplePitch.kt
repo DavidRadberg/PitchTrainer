@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.pitchtrainer.databinding.FragmentFirstBinding
+import com.example.pitchtrainer.databinding.FragmentSecondBinding
+import com.example.pitchtrainer.databinding.FragmentSimplePitchBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +28,12 @@ class SimplePitch : Fragment() {
     private var param2: String? = null
     private var mediaPlayer: MediaPlayer? = null
 
+    private var _binding: FragmentSimplePitchBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -31,18 +41,37 @@ class SimplePitch : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
         mediaPlayer = MediaPlayer.create(activity, R.raw.ff4a)
-        mediaPlayer?.setOnPreparedListener {
-            println("mediaplayer ready")
-        }
-        mediaPlayer?.start()
+        //mediaPlayer?.start()
+    }
+
+    override fun onStop() {
+        mediaPlayer?.stop()
+        super.onStop()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_simple_pitch, container, false)
+        _binding = FragmentSimplePitchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.interval1.setOnClickListener {
+            if (mediaPlayer?.isPlaying == true) {
+                mediaPlayer?.stop()
+                mediaPlayer?.prepare()
+            }
+            mediaPlayer?.start()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
