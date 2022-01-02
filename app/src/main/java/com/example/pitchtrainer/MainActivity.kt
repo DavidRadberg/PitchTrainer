@@ -12,19 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.pitchtrainer.databinding.ActivityMainBinding
 
-val notes: List<Int> = listOf(
-    R.raw.c3,
-    R.raw.db3,
-    R.raw.e3,
-    R.raw.f3,
-    R.raw.gb3,
-    R.raw.g3,
-    R.raw.ab3,
-    R.raw.a3,
-    R.raw.bb3,
-    R.raw.b3,
-    R.raw.c4
-)
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,16 +57,4 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
-}
-
-fun playNote(mp: MediaPlayer?) {
-    if (mp?.isPlaying == true) {
-        mp?.stop()
-        mp?.prepare()
-    }
-    mp?.start()
-}
-
-fun getNote(n: Int): Int {
-    return notes[n]
 }
