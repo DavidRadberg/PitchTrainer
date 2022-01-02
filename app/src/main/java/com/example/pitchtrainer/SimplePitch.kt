@@ -17,6 +17,22 @@ import com.example.pitchtrainer.databinding.FragmentSimplePitchBinding
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+data class NotePair(var base: Int, var interval: Int) {
+    fun getFirstNote(): Int {
+        return getNote(base)
+    }
+    fun getSecondNote(): Int {
+        return getNote(base + interval)
+    }
+}
+
+fun generateInterval(size: Int, maxInterval: Int = 12) : NotePair {
+    val interval : Int = (1..maxInterval).random()
+    var max : Int = size - interval - 1
+    val baseNote : Int = (0..max).random()
+    return NotePair(baseNote, interval)
+}
+
 /**
  * A simple [Fragment] subclass.
  * Use the [SimplePitch.newInstance] factory method to
@@ -26,7 +42,9 @@ class SimplePitch : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var mediaPlayer: MediaPlayer? = null
+    private var mp1: MediaPlayer? = null
+    private var mp2: MediaPlayer? = null
+    private var notePair: NotePair = NotePair(0, 0)
 
     private var _binding: FragmentSimplePitchBinding? = null
 
@@ -40,12 +58,14 @@ class SimplePitch : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        mediaPlayer = MediaPlayer.create(activity, R.raw.ff4a)
-        //mediaPlayer?.start()
+        notePair = generateInterval(notes.size)
+        mp1 = MediaPlayer.create(activity, notePair.getFirstNote())
+        mp2 = MediaPlayer.create(activity, notePair.getSecondNote())
     }
 
     override fun onStop() {
-        mediaPlayer?.stop()
+        mp1?.stop()
+        mp2?.stop()
         super.onStop()
     }
 
@@ -61,11 +81,9 @@ class SimplePitch : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.interval1.setOnClickListener {
-            if (mediaPlayer?.isPlaying == true) {
-                mediaPlayer?.stop()
-                mediaPlayer?.prepare()
-            }
-            mediaPlayer?.start()
+            playNote(mp1)
+            Thread.sleep(1_000)
+            playNote(mp2)
         }
     }
 
