@@ -69,7 +69,7 @@ class SimplePitch : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.interval1.setOnClickListener {
+        binding.newInterval.setOnClickListener {
             generateNotes()
             playNote(mp1)
             Thread.sleep(800)
