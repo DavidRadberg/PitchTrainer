@@ -4,7 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Gray"
     tools:context=".SecondFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".20" />
 
     <TextView
         android:id="@+id/textview_second"
@@ -20,8 +35,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/previous"
+        android:theme="@style/Button.White"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="394dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+        android:backgroundTint="@android:color/white"
+        android:theme="@style/Button.White"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintLeft_toLeftOf="@+id/left_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline" />
 </androidx.constraintlayout.widget.ConstraintLayout>
