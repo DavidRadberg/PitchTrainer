@@ -173,7 +173,7 @@
         tools:layout_editor_absoluteX="394dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_c3"
         android:layout_width="0dp"
         android:layout_height="190dp"
 
@@ -182,4 +182,214 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_05"
         app:layout_constraintLeft_toLeftOf="@+id/guideline_00"
         app:layout_constraintStart_toStartOf="@+id/guideline_00" />
+
+    <Button
+        android:id="@+id/button_d3"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_10"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_05"
+        app:layout_constraintStart_toStartOf="@+id/guideline_05" />
+
+    <Button
+        android:id="@+id/button_e3"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_15"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_10"
+        app:layout_constraintStart_toStartOf="@+id/guideline_10" />
+
+    <Button
+        android:id="@+id/button_f3"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_20"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_15"
+        app:layout_constraintStart_toStartOf="@+id/guideline_15" />
+
+    <Button
+        android:id="@+id/button_g3"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_25"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_20"
+        app:layout_constraintStart_toStartOf="@+id/guideline_20" />
+
+    <Button
+        android:id="@+id/button_a3"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_30"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_25"
+        app:layout_constraintStart_toStartOf="@+id/guideline_25" />
+
+    <Button
+        android:id="@+id/button_b3"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_35"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_30"
+        app:layout_constraintStart_toStartOf="@+id/guideline_30" />
+
+    <Button
+        android:id="@+id/button_c4"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_40"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_35"
+        app:layout_constraintStart_toStartOf="@+id/guideline_35" />
+
+    <Button
+        android:id="@+id/button_d4"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_45"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_40"
+        app:layout_constraintStart_toStartOf="@+id/guideline_40" />
+
+    <Button
+        android:id="@+id/button_e4"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_50"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_45"
+        app:layout_constraintStart_toStartOf="@+id/guideline_45" />
+
+    <Button
+        android:id="@+id/button_f4"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_55"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_50"
+        app:layout_constraintStart_toStartOf="@+id/guideline_50" />
+
+    <Button
+        android:id="@+id/button_g4"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_60"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_55"
+        app:layout_constraintStart_toStartOf="@+id/guideline_55" />
+
+    <Button
+        android:id="@+id/button_a4"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_65"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_60"
+        app:layout_constraintStart_toStartOf="@+id/guideline_60" />
+
+    <Button
+        android:id="@+id/button_b4"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_70"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_65"
+        app:layout_constraintStart_toStartOf="@+id/guideline_65" />
+
+    <Button
+        android:id="@+id/button_c5"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_75"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_70"
+        app:layout_constraintStart_toStartOf="@+id/guideline_70" />
+
+    <Button
+        android:id="@+id/button_d5"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_80"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_75"
+        app:layout_constraintStart_toStartOf="@+id/guideline_75" />
+
+    <Button
+        android:id="@+id/button_e5"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_85"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_80"
+        app:layout_constraintStart_toStartOf="@+id/guideline_80" />
+
+    <Button
+        android:id="@+id/button_f5"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_90"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_85"
+        app:layout_constraintStart_toStartOf="@+id/guideline_85" />
+
+    <Button
+        android:id="@+id/button_g5"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_95"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_90"
+        app:layout_constraintStart_toStartOf="@+id/guideline_90" />
+
+    <Button
+        android:id="@+id/button_a5"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+
+        android:theme="@style/Button.White"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_100"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_95"
+        app:layout_constraintStart_toStartOf="@+id/guideline_95" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
