@@ -44,3 +44,7 @@ fun generateInterval(size: Int, maxInterval: Int = 12) : NotePair {
     val baseNote : Int = (0..max).random()
     return NotePair(baseNote, interval)
 }
+
+enum class APP_STATES {
+    WAITING_FOR_GUESS, CORRECT_GUESS, INCORRECT_GUESS
+}

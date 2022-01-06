@@ -30,6 +30,8 @@ class SimplePitch : Fragment() {
     private var mp1: MediaPlayer? = null
     private var mp2: MediaPlayer? = null
     private var notePair: NotePair = NotePair(0, 0)
+    private val waitTimeMs: Long = 800
+    private val appStates: APP_STATES = APP_STATES.WAITING_FOR_GUESS
 
     private var _binding: FragmentSimplePitchBinding? = null
 
@@ -44,6 +46,7 @@ class SimplePitch : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
         generateNotes()
+        playNotes()
     }
 
     fun generateNotes() {
@@ -71,10 +74,18 @@ class SimplePitch : Fragment() {
 
         binding.newInterval.setOnClickListener {
             generateNotes()
-            playNote(mp1)
-            Thread.sleep(800)
-            playNote(mp2)
+            playNotes()
         }
+
+        binding.replay.setOnClickListener {
+            playNotes()
+        }
+    }
+
+    fun playNotes() {
+        playNote(mp1)
+        Thread.sleep(waitTimeMs)
+        playNote(mp2)
     }
 
     override fun onDestroyView() {
