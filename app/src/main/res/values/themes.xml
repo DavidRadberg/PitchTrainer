@@ -24,6 +24,11 @@
         <item name="colorOnPrimary">@color/black</item>
     </style>
 
+    <style name="Button.Black" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimary">@android:color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
     <style name="Theme.PitchTrainer.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.PitchTrainer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
