@@ -31,7 +31,7 @@ class SimplePitch : Fragment() {
     private var mp2: MediaPlayer? = null
     private var notePair: NotePair = NotePair(0, 0)
     private val waitTimeMs: Long = 800
-    private val appStates: APP_STATES = APP_STATES.WAITING_FOR_GUESS
+    private val appStates: app_states = app_states.WAITING_FOR_GUESS
 
     private var _binding: FragmentSimplePitchBinding? = null
 

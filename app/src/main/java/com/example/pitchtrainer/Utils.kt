@@ -6,7 +6,6 @@ import kotlin.math.max
 
 
 fun playNote(mp: MediaPlayer?, duration: Long = 0) {
-
     if (mp?.isPlaying == true) {
         mp?.stop()
         mp?.prepare()
@@ -25,6 +24,8 @@ fun getNote(n: Int): Int {
 val notes: List<Int> = listOf(
     R.raw.c3,
     R.raw.db3,
+    R.raw.d3,
+    R.raw.eb3,
     R.raw.e3,
     R.raw.f3,
     R.raw.gb3,
@@ -58,6 +59,7 @@ fun generatePhrase(size: Int, maxInterval: Int=12): List<Int> {
     val startNote: Int = (1..maxNote).random()
 
     var phrase: MutableList<Int> = mutableListOf(startNote)
+    var lastNote: Int = startNote
 
     while (phrase.size < size) {
         val maxInPhrase = phrase.maxOrNull() ?: 0
@@ -65,12 +67,22 @@ fun generatePhrase(size: Int, maxInterval: Int=12): List<Int> {
 
         val max = min(minInPhrase + maxInterval, maxNote)
         val min = max(minNote, maxInPhrase - maxInterval)
-        phrase.add((min..max).random())
+        var note: Int = (min..max).random()
+        while (note == lastNote) {
+            note = (min..max).random()
+        }
+
+        lastNote = note
+        phrase.add(note)
     }
 
     return phrase
 }
 
-enum class APP_STATES {
-    WAITING_FOR_GUESS, CORRECT_GUESS, INCORRECT_GUESS
+enum class app_states {
+    BASELINE, WAITING_FOR_GUESS, CORRECT_GUESS, INCORRECT_GUESS
+}
+
+enum class guess_result {
+    CORRECT, INCORRECT, OUT_OF_RANGE, SAME_NOTE
 }
