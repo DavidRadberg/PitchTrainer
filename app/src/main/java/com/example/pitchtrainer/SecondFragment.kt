@@ -1,6 +1,7 @@
 package com.example.pitchtrainer
 
 import android.content.pm.ActivityInfo
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,11 @@ import com.example.pitchtrainer.databinding.FragmentSecondBinding
 class SecondFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
+    private var phrase: List<Int> = emptyList()
+    private var players: MutableList<MediaPlayer> = mutableListOf()
+    private var phraseSize: Int = 4
+    private val waitTimeMs: Long = 800
+    private var nPrepared: Int = 0
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -34,9 +40,30 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        generateNotes()
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            playAllNotes()
         }
+
+    }
+
+    fun generateNotes() {
+        phrase = generatePhrase(phraseSize)
+
+        for (note in phrase) {
+            players.add(MediaPlayer.create(activity, getNote(note)))
+        }
+    }
+
+    fun onPrepared() {
+        nPrepared = 1
+    }
+
+    fun playAllNotes() {
+        for (player in players) {
+            playNote(player, waitTimeMs)
+        }
+
     }
 
     override fun onDestroyView() {

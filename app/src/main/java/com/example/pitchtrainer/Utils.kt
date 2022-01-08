@@ -1,17 +1,24 @@
 package com.example.pitchtrainer
 
 import android.media.MediaPlayer
+import kotlin.math.min
+import kotlin.math.max
 
 
-fun playNote(mp: MediaPlayer?) {
+fun playNote(mp: MediaPlayer?, duration: Long = 0) {
+
     if (mp?.isPlaying == true) {
         mp?.stop()
         mp?.prepare()
     }
     mp?.start()
+    Thread.sleep(duration)
 }
 
 fun getNote(n: Int): Int {
+    if (n < 0 || n >= notes.size) {
+        return 0
+    }
     return notes[n]
 }
 
@@ -43,6 +50,25 @@ fun generateInterval(size: Int, maxInterval: Int = 12) : NotePair {
     var max : Int = size - interval - 1
     val baseNote : Int = (0..max).random()
     return NotePair(baseNote, interval)
+}
+
+fun generatePhrase(size: Int, maxInterval: Int=12): List<Int> {
+    val maxNote: Int = notes.size - 1
+    val minNote: Int = 0
+    val startNote: Int = (1..maxNote).random()
+
+    var phrase: MutableList<Int> = mutableListOf(startNote)
+
+    while (phrase.size < size) {
+        val maxInPhrase = phrase.maxOrNull() ?: 0
+        val minInPhrase = phrase.minOrNull() ?: 0
+
+        val max = min(minInPhrase + maxInterval, maxNote)
+        val min = max(minNote, maxInPhrase - maxInterval)
+        phrase.add((min..max).random())
+    }
+
+    return phrase
 }
 
 enum class APP_STATES {
