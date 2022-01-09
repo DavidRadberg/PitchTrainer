@@ -15,9 +15,6 @@ fun playNote(mp: MediaPlayer?, duration: Long = 0) {
 }
 
 fun getNote(n: Int): Int {
-    if (n < 0 || n >= notes.size) {
-        return 0
-    }
     return notes[n]
 }
 
