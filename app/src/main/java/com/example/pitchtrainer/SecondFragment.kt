@@ -90,6 +90,7 @@ class SecondFragment : Fragment() {
     private fun toGuessState() {
         state = app_states.WAITING_FOR_GUESS
         nCorrectGuesses = 0
+        setResultText(getGuessString(nCorrectGuesses + 2))
 
         for (i in notes.indices) {
             getButton(i)?.setOnClickListener() {
@@ -103,6 +104,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun toCorrectState() {
+        setResultText("Correct!")
         for (i in 0 until phraseSize) {
             getButton(phrase[i])?.setBackgroundColor(getPhraseColor(i))
         }
@@ -110,6 +112,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun toIncorrectState(guess: Int) {
+        setResultText("Incorrect!")
         getButton(guess)?.setBackgroundColor(resources.getColor(R.color.OrangeRed))
 
         for (i in 0..(nCorrectGuesses+1)) {
@@ -143,6 +146,7 @@ class SecondFragment : Fragment() {
         when (getGuessResult(guess, nCorrectGuesses+1)) {
             guess_result.CORRECT -> {
                 nCorrectGuesses++
+                setResultText(getGuessString(nCorrectGuesses + 2))
                 getButton(guess)?.setBackgroundColor(getPhraseColor(nCorrectGuesses))
                 if (nCorrectGuesses >= phraseSize - 1) {
                     toCorrectState()
@@ -152,6 +156,10 @@ class SecondFragment : Fragment() {
                 toIncorrectState(guess)
             }
         }
+    }
+
+    private fun setResultText(text: String) {
+        binding.ResultTextView.text = text
     }
 
     private fun getPhraseColor(idx: Int): Int {

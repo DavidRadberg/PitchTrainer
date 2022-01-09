@@ -14,6 +14,14 @@ fun playNote(mp: MediaPlayer?, duration: Long = 0) {
     Thread.sleep(duration)
 }
 
+val suffixes: List<String> = listOf("th","st", "nd", "rd", "th")
+
+
+fun getGuessString(idx: Int): String {
+    val suffix: String = suffixes[min(idx, 3)]
+    return "Guess the $idx$suffix note"
+}
+
 fun getNote(n: Int): Int {
     return notes[n]
 }
