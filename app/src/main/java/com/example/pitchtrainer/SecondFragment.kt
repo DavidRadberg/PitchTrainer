@@ -9,9 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.ColorUtils
 import com.example.pitchtrainer.databinding.FragmentSecondBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlin.collections.ArrayDeque
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -21,13 +20,14 @@ class SecondFragment : Fragment() {
     private var _binding: FragmentSecondBinding? = null
     private var phrase: List<Int> = emptyList()
     private var players: MutableList<MediaPlayer> = mutableListOf()
-    private var singlePlayer: MediaPlayer? = null
     private var phraseSize: Int = 3
     private val waitTimeMs: Long = 800
     private var state: app_states = app_states.BASELINE
     private var nCorrectGuesses: Int = 0
     private var phraseJob: Job? = null
-    private var guessJob: Job? = null
+    private var guessJobs: ArrayDeque<Job> = ArrayDeque()
+    private var guessPlayers: ArrayDeque<MediaPlayer?> = ArrayDeque()
+    private val maxGuessJobs: Int = 10
     private val whiteKeys: List<Int> =
         listOf(0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33)
     private val blackKeys: List<Int> =
@@ -80,7 +80,7 @@ class SecondFragment : Fragment() {
             for (player in players) {
                 val playing = playNote(player)
                 playing.await()
-                Thread.sleep(waitTimeMs)
+                delay(waitTimeMs)
             }
         }
     }
@@ -92,8 +92,15 @@ class SecondFragment : Fragment() {
     }
 
     private fun cancelGuess() {
-        if (guessJob?.isActive == true) {
-            guessJob?.cancel()
+        while (guessPlayers.size > 0) {
+            val player = guessPlayers.removeFirstOrNull()
+            player?.stop()
+            player?.release()
+        }
+
+        while (guessJobs.size > 0) {
+            val job = guessJobs.removeFirstOrNull()
+            job?.cancel()
         }
     }
 
@@ -150,9 +157,6 @@ class SecondFragment : Fragment() {
             player.release()
         }
         players = mutableListOf()
-        singlePlayer?.stop()
-        singlePlayer?.release()
-        singlePlayer = null
     }
 
     override fun onDestroy() {
@@ -203,17 +207,27 @@ class SecondFragment : Fragment() {
     }
 
     private fun playSingleNote(note: Int) {
-        cancelGuess()
-        singlePlayer?.release()
-        singlePlayer = MediaPlayer.create(activity, getNote(note))
-        guessJob = GlobalScope.launch {
-            val playing = playNote(singlePlayer)
-            playing.await()
+        while (guessJobs.size > maxGuessJobs) {
+            guessJobs.removeFirst().cancel()
         }
+
+        val job: Job = GlobalScope.launch {
+            var player: MediaPlayer? = null
+            try {
+                player = MediaPlayer.create(activity, getNote(note))
+                guessPlayers.add(player)
+                val playing = playNote(player)
+                playing.await()
+                delay(5000)
+            } finally {
+                player = guessPlayers.removeFirstOrNull()
+                player?.stop()
+                player?.release()
+            }
+        }
+        guessJobs.add(job)
     }
 
-
-    //0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33
     private fun getButton(note: Int): android.widget.Button? {
         when (note) {
             0 -> return binding.buttonC3
