@@ -8,6 +8,7 @@ import kotlin.math.max
 
 val notesInKey: List<Int> = listOf(0, 2, 4, 5, 7, 9, 11)
 
+const val ARG_DIFFICULTY = "difficulty"
 const val octave: Int = 12
 
 fun inKey(note: Int, key: Int) : Boolean {

@@ -17,6 +17,7 @@ import kotlin.collections.ArrayDeque
  */
 class SecondFragment : Fragment() {
 
+    private var difficulty: Int = 0
     private var _binding: FragmentSecondBinding? = null
     private var phrase: List<Int> = emptyList()
     private var players: MutableList<MediaPlayer> = mutableListOf()
@@ -44,6 +45,7 @@ class SecondFragment : Fragment() {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+        difficulty = arguments?.getInt(ARG_DIFFICULTY) ?: 0
         return binding.root
 
     }
