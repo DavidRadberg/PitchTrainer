@@ -4,6 +4,14 @@ import android.media.MediaPlayer
 import kotlin.math.min
 import kotlin.math.max
 
+val notesInKey: List<Int> = listOf(0, 2, 4, 5, 7, 9, 11)
+
+const val octave: Int = 12
+
+fun inKey(note: Int, key: Int) : Boolean {
+    return notesInKey.contains((note - key) % octave)
+}
+
 
 fun playNote(mp: MediaPlayer?, duration: Long = 0) {
     if (mp?.isPlaying == true) {
@@ -79,10 +87,17 @@ fun generateInterval(size: Int, maxInterval: Int = 12) : NotePair {
     return NotePair(baseNote, interval)
 }
 
-fun generatePhrase(size: Int, maxInterval: Int=12): List<Int> {
+fun generatePhrase(size: Int, maxInterval: Int=octave): List<Int> {
     val maxNote: Int = notes.size - 1
     val minNote: Int = 0
-    val startNote: Int = (1..maxNote).random()
+    var noteOk: Boolean = false
+    val key: Int = (0 until octave).random()
+    var startNote: Int = (0..maxNote).random()
+
+    while (!noteOk) {
+        startNote = (0..maxNote).random()
+        noteOk = inKey(startNote, key)
+    }
 
     var phrase: MutableList<Int> = mutableListOf(startNote)
     var lastNote: Int = startNote
@@ -93,9 +108,11 @@ fun generatePhrase(size: Int, maxInterval: Int=12): List<Int> {
 
         val max = min(minInPhrase + maxInterval, maxNote)
         val min = max(minNote, maxInPhrase - maxInterval)
+        noteOk = false
         var note: Int = (min..max).random()
-        while (note == lastNote) {
+        while (!noteOk) {
             note = (min..max).random()
+            noteOk = inKey(note, key) && (note != lastNote)
         }
 
         lastNote = note
