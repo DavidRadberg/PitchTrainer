@@ -43,7 +43,7 @@ class SecondFragment : Fragment() {
     ): View? {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
         return binding.root
 
     }
@@ -66,6 +66,7 @@ class SecondFragment : Fragment() {
 
     private fun generateNotes() {
         releasePlayers()
+        cancelGuess()
         phrase = generatePhrase(phraseSize)
 
         for (note in phrase) {

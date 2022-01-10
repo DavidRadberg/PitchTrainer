@@ -1,5 +1,6 @@
 package com.example.pitchtrainer
 
+import android.content.pm.ActivityInfo
 import android.media.MediaPlayer
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
