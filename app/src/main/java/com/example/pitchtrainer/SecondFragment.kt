@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.ColorUtils
 import com.example.pitchtrainer.databinding.FragmentSecondBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -23,6 +26,8 @@ class SecondFragment : Fragment() {
     private val waitTimeMs: Long = 800
     private var state: app_states = app_states.BASELINE
     private var nCorrectGuesses: Int = 0
+    private var phraseJob: Job? = null
+    private var guessJob: Job? = null
     private val whiteKeys: List<Int> =
         listOf(0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33)
     private val blackKeys: List<Int> =
@@ -70,8 +75,25 @@ class SecondFragment : Fragment() {
     }
 
     private fun playAllNotes() {
-        for (player in players) {
-            playNote(player, waitTimeMs)
+        cancelPhrase()
+        phraseJob = GlobalScope.launch {
+            for (player in players) {
+                val playing = playNote(player)
+                playing.await()
+                Thread.sleep(waitTimeMs)
+            }
+        }
+    }
+
+    private fun cancelPhrase() {
+        if (phraseJob?.isActive == true) {
+            phraseJob?.cancel()
+        }
+    }
+
+    private fun cancelGuess() {
+        if (guessJob?.isActive == true) {
+            guessJob?.cancel()
         }
     }
 
@@ -122,6 +144,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun releasePlayers() {
+        cancelPhrase()
         for (player in players) {
             player.stop()
             player.release()
@@ -134,6 +157,7 @@ class SecondFragment : Fragment() {
 
     override fun onDestroy() {
         releasePlayers()
+        cancelGuess()
         super.onDestroy()
     }
 
@@ -179,9 +203,13 @@ class SecondFragment : Fragment() {
     }
 
     private fun playSingleNote(note: Int) {
+        cancelGuess()
         singlePlayer?.release()
         singlePlayer = MediaPlayer.create(activity, getNote(note))
-        playNote(singlePlayer)
+        guessJob = GlobalScope.launch {
+            val playing = playNote(singlePlayer)
+            playing.await()
+        }
     }
 
 

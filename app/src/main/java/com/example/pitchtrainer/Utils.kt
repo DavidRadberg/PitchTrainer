@@ -1,6 +1,8 @@
 package com.example.pitchtrainer
 
 import android.media.MediaPlayer
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlin.math.min
 import kotlin.math.max
 
@@ -13,13 +15,12 @@ fun inKey(note: Int, key: Int) : Boolean {
 }
 
 
-fun playNote(mp: MediaPlayer?, duration: Long = 0) {
+fun playNote(mp: MediaPlayer?) = GlobalScope.async   {
     if (mp?.isPlaying == true) {
         mp?.stop()
         mp?.prepare()
     }
     mp?.start()
-    Thread.sleep(duration)
 }
 
 val suffixes: List<String> = listOf("th","st", "nd", "rd", "th")
