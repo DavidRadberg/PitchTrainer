@@ -34,6 +34,7 @@ class PitchTrainer : Fragment() {
         listOf(0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33)
     private val blackKeys: List<Int> =
         listOf(1, 3, 6, 8, 10, 13, 15, 18, 20, 22, 25, 27, 30, 32)
+    private var streak: Int = 0
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -66,6 +67,8 @@ class PitchTrainer : Fragment() {
             generateNotes()
             binding.buttonPlayPhrase.callOnClick()
         }
+        binding.textViewDifficulty.text = "Difficulty: $difficulty"
+        binding.textViewStreak.text = "Streak: $streak"
     }
 
     private fun generateNotes() {
@@ -139,6 +142,8 @@ class PitchTrainer : Fragment() {
 
     private fun toCorrectState() {
         setResultText("Correct!")
+        streak++
+        binding.textViewStreak.text = "Streak: $streak"
         for (i in 0 until phraseSize) {
             getButton(phrase[i])?.setBackgroundColor(getPhraseColor(i))
         }
