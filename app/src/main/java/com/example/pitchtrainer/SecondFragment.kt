@@ -21,7 +21,7 @@ class SecondFragment : Fragment() {
     private var _binding: FragmentSecondBinding? = null
     private var phrase: List<Int> = emptyList()
     private var players: MutableList<MediaPlayer> = mutableListOf()
-    private var phraseSize: Int = 3
+    private var phraseSize: Int = 2
     private val waitTimeMs: Long = 800
     private var state: app_states = app_states.BASELINE
     private var nCorrectGuesses: Int = 0
@@ -29,6 +29,7 @@ class SecondFragment : Fragment() {
     private var guessJobs: ArrayDeque<Job> = ArrayDeque()
     private var guessPlayers: ArrayDeque<MediaPlayer?> = ArrayDeque()
     private val maxGuessJobs: Int = 10
+    private var settings: Settings = Settings()
     private val whiteKeys: List<Int> =
         listOf(0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33)
     private val blackKeys: List<Int> =
@@ -46,13 +47,14 @@ class SecondFragment : Fragment() {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
         difficulty = arguments?.getInt(ARG_DIFFICULTY) ?: 0
+        settings = getSettings(difficulty)
+        phraseSize = settings.phraseSize
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         generateNotes()
         binding.buttonPlayPhrase.setOnClickListener {
             if (state == app_states.BASELINE) {
@@ -69,7 +71,7 @@ class SecondFragment : Fragment() {
     private fun generateNotes() {
         releasePlayers()
         cancelGuess()
-        phrase = generatePhrase(phraseSize)
+        phrase = generatePhrase(settings)
 
         for (note in phrase) {
             players.add(MediaPlayer.create(activity, getNote(note)))
