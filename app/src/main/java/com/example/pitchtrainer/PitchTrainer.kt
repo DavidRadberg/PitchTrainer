@@ -79,6 +79,11 @@ class PitchTrainer : Fragment() {
         for (note in phrase) {
             players.add(MediaPlayer.create(activity, getNote(note)))
         }
+        if (state == AppStates.WAITING_FOR_GUESS) {
+            streak = 0
+            binding.textViewStreak.text = "Streak: $streak"
+        }
+
         toBaselineState()
     }
 
