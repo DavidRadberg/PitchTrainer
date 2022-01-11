@@ -151,6 +151,8 @@ class PitchTrainer : Fragment() {
     }
 
     private fun toIncorrectState(guess: Int) {
+        streak = 0
+        binding.textViewStreak.text = "Streak: $streak"
         setResultText("Incorrect!")
         getButton(guess)?.setBackgroundColor(resources.getColor(R.color.OrangeRed))
 
