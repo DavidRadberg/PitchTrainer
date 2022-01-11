@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.navigation.fragment.findNavController
-import com.example.pitchtrainer.databinding.FragmentFirstBinding
+import com.example.pitchtrainer.databinding.StartMenuBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -28,7 +28,7 @@ val difficultyDescriptions: List<String> = listOf(
 
 class FirstFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: StartMenuBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -40,9 +40,9 @@ class FirstFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = StartMenuBinding.inflate(inflater, container, false)
         binding.textviewFirst.text = "Difficulty: $difficulty"
-        binding.textviewDecleration.text = difficultyDescriptions[difficulty]
+        binding.textviewDescription.text = difficultyDescriptions[difficulty]
         return binding.root
 
     }
@@ -61,7 +61,7 @@ class FirstFragment : Fragment() {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 difficulty = i + 1
                 binding.textviewFirst.text = "Difficulty: $difficulty"
-                binding.textviewDecleration.text = difficultyDescriptions[difficulty]
+                binding.textviewDescription.text = difficultyDescriptions[difficulty]
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {

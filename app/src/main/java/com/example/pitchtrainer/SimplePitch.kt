@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.pitchtrainer.databinding.FragmentFirstBinding
+import com.example.pitchtrainer.databinding.StartMenuBinding
 import com.example.pitchtrainer.databinding.FragmentSecondBinding
 import com.example.pitchtrainer.databinding.FragmentSimplePitchBinding
 

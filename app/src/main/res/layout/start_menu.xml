@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textview_first" />
 
     <TextView
-        android:id="@+id/textview_decleration"
+        android:id="@+id/textview_description"
         android:layout_width="364dp"
         android:layout_height="123dp"
         android:layout_marginTop="8dp"
