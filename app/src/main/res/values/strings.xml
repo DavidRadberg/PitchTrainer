@@ -4,6 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Pitch Trainer</string>
     <string name="second_fragment_label">Pitch Trainer</string>
+    <string name="tutorial_label">Tutorial</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -11,4 +12,24 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="large_text">
+        "This app is made to train and test Relative Pitch.\n"
+        "Relative Pitch is a person's ability to identify intervals between two or more notes.\n"
+        "Start by selecting a difficulty with the slider, there is a text below that describes this"
+        "difficulty.\n The recommendation is to start with difficulty 1 and work your way 1 by 1."
+        "\nMost people will find the first couple of difficulties sufficiently challenging.\n\n"
+        "Press 'Start PitchTrainer' and 'Play Phrase' to start.\n You will hear 2 or more notes, "
+        "depending on the difficulty chosen.\n The first note is shown in blue, the rest of the"
+        "notes are unknown.\n It is your job to try to guess the unknown notes in the Phrase.\n"
+        "Pressing a note on the keyboard will register a guess.\n"
+        "If the guess is correct the pressed key will turn green,"
+        "if the guess is incorrect the pressed key will turn red\n. If the phrase consists of multiple"
+        "unknown notes, you will have to keep guessing at the next note in the phrase until you have"
+        "guessed all notes correctly, or until you have gotten one incorrect guess.\n"
+        "At any time you can press 'Replay Phrase' to listen to the Phrase again.\n This is recommended"
+        "if you are not sure of which note to guess on.\n After you have guessed the Phrase (correctly,"
+        "or incorrectly) you can press any key to hear it's note.\n This can help you build intuition"
+        "of the keyboard.\n You can always press 'New Phrase' to generate and guess on a new random phrase.\n"
+        "If you want to change difficulty or view this tutorial you can press the left arrow"
+    </string>
 </resources>

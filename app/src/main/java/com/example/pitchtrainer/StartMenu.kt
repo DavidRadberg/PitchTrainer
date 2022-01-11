@@ -56,6 +56,10 @@ class FirstFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
         }
 
+        binding.buttonTutorial.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_Tutorial)
+        }
+
         binding.seekBar2.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {

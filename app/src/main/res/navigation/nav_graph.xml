@@ -15,8 +15,8 @@
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
         <action
-            android:id="@+id/action_FirstFragment_to_simplePitch"
-            app:destination="@id/simplePitch" />
+            android:id="@+id/action_FirstFragment_to_Tutorial"
+            app:destination="@id/Tutorial" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -28,13 +28,14 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/simplePitch"
-        android:name="com.example.pitchtrainer.SimplePitch"
-        android:label="fragment_simple_pitch"
-        tools:layout="@layout/fragment_simple_pitch" >
+        android:id="@+id/Tutorial"
+        android:name="com.example.pitchtrainer.Tutorial"
+        android:label="@string/tutorial_label"
+        tools:layout="@layout/fragment_tutorial">
         <action
-            android:id="@+id/action_simplePitch_to_FirstFragment"
+            android:id="@+id/action_Tutorial_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
