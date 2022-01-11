@@ -115,23 +115,6 @@ val notes: List<Int> = listOf(
     R.raw.a5,
 )
 
-data class NotePair(var base: Int, var interval: Int) {
-    fun getFirstNote(): Int {
-        return getNote(base)
-    }
-
-    fun getSecondNote(): Int {
-        return getNote(base + interval)
-    }
-}
-
-fun generateInterval(size: Int, maxInterval: Int = 12): NotePair {
-    val interval: Int = (1..maxInterval).random()
-    var max: Int = size - interval - 1
-    val baseNote: Int = (0..max).random()
-    return NotePair(baseNote, interval)
-}
-
 fun generatePhrase(settings: Settings, maxInterval: Int = octave): List<Int> {
     val scale = settings.scale
 
@@ -176,10 +159,10 @@ fun generatePhrase(settings: Settings, maxInterval: Int = octave): List<Int> {
     return phrase
 }
 
-enum class app_states {
+enum class AppStates {
     BASELINE, WAITING_FOR_GUESS, CORRECT_GUESS, INCORRECT_GUESS
 }
 
-enum class guess_result {
+enum class GuessResult {
     CORRECT, INCORRECT, OUT_OF_RANGE, SAME_NOTE
 }

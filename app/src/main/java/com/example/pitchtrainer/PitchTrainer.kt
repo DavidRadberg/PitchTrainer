@@ -8,22 +8,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.ColorUtils
-import com.example.pitchtrainer.databinding.FragmentSecondBinding
+import com.example.pitchtrainer.databinding.PitchTrainerBinding
 import kotlinx.coroutines.*
 import kotlin.collections.ArrayDeque
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class PitchTrainer : Fragment() {
 
     private var difficulty: Int = 0
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: PitchTrainerBinding? = null
     private var phrase: List<Int> = emptyList()
     private var players: MutableList<MediaPlayer> = mutableListOf()
     private var phraseSize: Int = 2
     private val waitTimeMs: Long = 800
-    private var state: app_states = app_states.BASELINE
+    private var state: AppStates = AppStates.BASELINE
     private var nCorrectGuesses: Int = 0
     private var phraseJob: Job? = null
     private var guessJobs: ArrayDeque<Job> = ArrayDeque()
@@ -44,7 +44,7 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = PitchTrainerBinding.inflate(inflater, container, false)
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
         difficulty = arguments?.getInt(ARG_DIFFICULTY) ?: 0
         settings = getSettings(difficulty)
@@ -57,7 +57,7 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         generateNotes()
         binding.buttonPlayPhrase.setOnClickListener {
-            if (state == app_states.BASELINE) {
+            if (state == AppStates.BASELINE) {
                 toGuessState()
             }
             playAllNotes()
@@ -110,7 +110,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun toBaselineState() {
-        state = app_states.BASELINE
+        state = AppStates.BASELINE
 
         for (i in notes.indices) {
             val button: android.widget.Button? = getButton(i)
@@ -122,14 +122,14 @@ class SecondFragment : Fragment() {
     }
 
     private fun toGuessState() {
-        state = app_states.WAITING_FOR_GUESS
+        state = AppStates.WAITING_FOR_GUESS
         nCorrectGuesses = 0
         setResultText(getGuessString(nCorrectGuesses + 2))
 
         for (i in notes.indices) {
             getButton(i)?.setOnClickListener() {
                 playSingleNote(i)
-                if (state == app_states.WAITING_FOR_GUESS) {
+                if (state == AppStates.WAITING_FOR_GUESS) {
                     takeGuess(i)
                 }
             }
@@ -142,7 +142,7 @@ class SecondFragment : Fragment() {
         for (i in 0 until phraseSize) {
             getButton(phrase[i])?.setBackgroundColor(getPhraseColor(i))
         }
-        state = app_states.CORRECT_GUESS
+        state = AppStates.CORRECT_GUESS
     }
 
     private fun toIncorrectState(guess: Int) {
@@ -152,7 +152,7 @@ class SecondFragment : Fragment() {
         for (i in 0..(nCorrectGuesses+1)) {
             getButton(phrase[i])?.setBackgroundColor(getPhraseColor(i))
         }
-        state = app_states.INCORRECT_GUESS
+        state = AppStates.INCORRECT_GUESS
     }
 
     private fun releasePlayers() {
@@ -177,7 +177,7 @@ class SecondFragment : Fragment() {
 
     private fun takeGuess(guess: Int) {
         when (getGuessResult(guess, nCorrectGuesses+1)) {
-            guess_result.CORRECT -> {
+            GuessResult.CORRECT -> {
                 nCorrectGuesses++
                 setResultText(getGuessString(nCorrectGuesses + 2))
                 getButton(guess)?.setBackgroundColor(getPhraseColor(nCorrectGuesses))
@@ -200,15 +200,15 @@ class SecondFragment : Fragment() {
         return ColorUtils.blendARGB(resources.getColor(R.color.LightBlue), resources.getColor(R.color.Green), ratio)
     }
 
-    private fun getGuessResult(guess: Int, noteIdx: Int, maxInterval: Int = 12): guess_result {
+    private fun getGuessResult(guess: Int, noteIdx: Int, maxInterval: Int = 12): GuessResult {
         when (guess) {
-            phrase[noteIdx] -> return guess_result.CORRECT
-            phrase[noteIdx - 1] -> return guess_result.SAME_NOTE
+            phrase[noteIdx] -> return GuessResult.CORRECT
+            phrase[noteIdx - 1] -> return GuessResult.SAME_NOTE
         }
         if (kotlin.math.abs(guess - phrase[noteIdx]) > maxInterval) {
-            return guess_result.OUT_OF_RANGE
+            return GuessResult.OUT_OF_RANGE
         }
-        return guess_result.INCORRECT
+        return GuessResult.INCORRECT
     }
 
     private fun playSingleNote(note: Int) {

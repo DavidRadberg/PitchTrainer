@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/WhiteSmoke"
-    tools:context=".SecondFragment">
+    tools:context=".PitchTrainer">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/Gray"
-        tools:context=".SecondFragment"
+        tools:context=".PitchTrainer"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-39dp">
 
