@@ -130,15 +130,19 @@ class PitchTrainer : Fragment() {
     }
 
     private fun toGuessState() {
+        binding.buttonPlayPhrase.text = "Replay Phrase"
         state = AppStates.WAITING_FOR_GUESS
         nCorrectGuesses = 0
         setResultText(getGuessString(nCorrectGuesses + 2))
 
         for (i in notes.indices) {
             getButton(i)?.setOnClickListener() {
-                playSingleNote(i)
                 if (state == AppStates.WAITING_FOR_GUESS) {
-                    takeGuess(i)
+                     if (takeGuess(i) != GuessResult.CORRECT) {
+                        playSingleNote(i)
+                    }
+                } else {
+                    playSingleNote(i)
                 }
             }
         }
@@ -187,7 +191,7 @@ class PitchTrainer : Fragment() {
         _binding = null
     }
 
-    private fun takeGuess(guess: Int) {
+    private fun takeGuess(guess: Int): GuessResult {
         when (getGuessResult(guess, nCorrectGuesses+1)) {
             GuessResult.CORRECT -> {
                 nCorrectGuesses++
@@ -196,9 +200,14 @@ class PitchTrainer : Fragment() {
                 if (nCorrectGuesses >= phraseSize - 1) {
                     toCorrectState()
                 }
+                return GuessResult.CORRECT
+            }
+            GuessResult.SAME_NOTE -> {
+                return GuessResult.SAME_NOTE
             }
             else -> {
                 toIncorrectState(guess)
+                return GuessResult.INCORRECT
             }
         }
     }
