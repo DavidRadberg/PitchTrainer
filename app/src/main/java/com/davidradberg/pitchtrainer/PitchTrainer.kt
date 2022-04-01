@@ -1,4 +1,4 @@
-package com.example.pitchtrainer
+package com.davidradberg.pitchtrainer
 
 import android.content.pm.ActivityInfo
 import android.media.MediaPlayer
@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.ColorUtils
-import com.example.pitchtrainer.databinding.PitchTrainerBinding
+import com.davidradberg.pitchtrainer.databinding.PitchTrainerBinding
 import kotlinx.coroutines.*
 import kotlin.collections.ArrayDeque
 

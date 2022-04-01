@@ -1,4 +1,4 @@
-package com.example.pitchtrainer
+package com.davidradberg.pitchtrainer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.navigation.fragment.findNavController
-import com.example.pitchtrainer.databinding.StartMenuBinding
+import com.davidradberg.pitchtrainer.databinding.StartMenuBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

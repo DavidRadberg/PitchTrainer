@@ -1,17 +1,14 @@
-package com.example.pitchtrainer
+package com.davidradberg.pitchtrainer
 
 import android.content.pm.ActivityInfo
-import android.media.MediaPlayer
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
-import android.view.MenuItem
-import com.example.pitchtrainer.databinding.ActivityMainBinding
+import com.davidradberg.pitchtrainer.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {

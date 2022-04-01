@@ -1,4 +1,4 @@
-package com.example.pitchtrainer
+package com.davidradberg.pitchtrainer
 
 import org.junit.Test
 

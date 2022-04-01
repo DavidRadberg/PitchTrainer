@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.pitchtrainer.FirstFragment"
+        android:name="com.davidradberg.pitchtrainer.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/start_menu">
 
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.pitchtrainer.PitchTrainer"
+        android:name="com.davidradberg.pitchtrainer.PitchTrainer"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/pitch_trainer">
 
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/Tutorial"
-        android:name="com.example.pitchtrainer.Tutorial"
+        android:name="com.davidradberg.pitchtrainer.Tutorial"
         android:label="@string/tutorial_label"
         tools:layout="@layout/fragment_tutorial">
         <action

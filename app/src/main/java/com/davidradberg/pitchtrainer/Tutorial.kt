@@ -1,4 +1,4 @@
-package com.example.pitchtrainer
+package com.davidradberg.pitchtrainer
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
